@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
 import './App.css';
+
+import HomePage from './pages/homepage';
 
 export default class App extends Component {
 	render() {
 		return (
-			<div>
-				<h1>This is normal</h1>
-				<br />
-				<h1 className="font">This is museo</h1>
-			</div>
+			<Router>
+				<Container
+					fluid={true}
+					className="p-0"
+					style={{ backgroundColor: '#114B5F', width: '100%', height: '100vh' }}>
+					<Switch>
+						<Route exact path="/">
+							<HomePage />
+						</Route>
+					</Switch>
+				</Container>
+			</Router>
 		);
 	}
 }
