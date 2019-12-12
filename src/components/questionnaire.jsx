@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstral/Button';
+import Button from 'react-bootstrap/Button';
 
 export default class Questionnaire extends Component {
 	constructor(props) {
@@ -15,8 +15,8 @@ export default class Questionnaire extends Component {
 			email: '',
 			repo: '',
 			URL: '',
-			displayed: '',
-			emailSent: '',
+			displayed: false,
+			emailSent: null,
 			score: '',
 			questions: [
 				{
@@ -111,55 +111,72 @@ export default class Questionnaire extends Component {
 
 	render() {
 		return (
-			<Container>
-				<Row>
-					<Form onSubmit={this.handleSubmit} style={{ padding: '1rem' }} className="lfont">
-						<Form.Group>
-							<Form.Label htmlFor="full-name">Name</Form.Label>
-							<Form.Control
-								id="full-name"
-								name="name"
-								type="text"
-								value={this.state.name}
-								onChange={this.handleChange}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label htmlFor="email">Email</Form.Label>
-							<Form.Control
-								id="email"
-								name="email"
-								type="email"
-								value={this.state.email}
-								onChange={this.handleChange}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label htmlFor="message">Message</Form.Label>
-							<Form.Control
-								id="message"
-								name="message"
-								as="textarea"
-								rows="4"
-								value={this.state.message}
-								onChange={this.handleChange}
-							/>
-						</Form.Group>
+			<Container
+				className="d-flex flex-column"
+				style={{
+					paddingTop: '5rem',
+					marginBottom: '.5rem',
+					border: '.2rem solid purple'
+				}}>
+				<Form
+					onSubmit={this.handleSubmit}
+					style={{ padding: '1rem', backgroundColor: '#446990', border: '.1rem solid black' }}
+					className="font">
+					<Form.Group>
+						<Form.Control
+							id="fullname"
+							name="name"
+							type="text"
+							placeholder="FULL NAME"
+							value={this.state.fullname}
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Control
+							id="email"
+							name="email"
+							type="email"
+							placeholder="EMAIL"
+							value={this.state.email}
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Control
+							id="repo"
+							name="repo"
+							type="text"
+							placeholder="PROJECT REPOSITORY"
+							value={this.state.repo}
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
+					<Form.Group>
+						<Form.Control
+							id="URL"
+							name="URL"
+							type="text"
+							placeholder="PROJECT URL"
+							value={this.state.URL}
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
 
-						{this.makeQuestions(this.state.questions)}
-						<Button
-							style={{ backgroundColor: '#2B96B7', border: '#2B96B7' }}
-							type="submit"
-							variant="primary"
-							className="d-inline-block"
-							disabled={this.state.disabled}>
-							Send
-						</Button>
+					{this.makeQuestions(this.state.questions)}
 
-						{this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
-						{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>}
-					</Form>
-				</Row>
+					<Button
+						style={{ backgroundColor: '#F45B69', border: '#F45B69' }}
+						type="submit"
+						variant="primary"
+						className="d-inline-block"
+						disabled={this.state.disabled}>
+						Send
+					</Button>
+
+					{this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
+					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>}
+				</Form>
 			</Container>
 		);
 	}

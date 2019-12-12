@@ -7,12 +7,10 @@ export default class Question extends Component {
 		const { id, evaluation } = this.props.question;
 
 		return (
-			<Col>
-				<Form.Group>
-					<Form.Label htmlFor="score">{evaluation}</Form.Label>
-					<Form.Control id="score" name="score" type="number" min="0" max="5" />
-				</Form.Group>
-			</Col>
+			<Form.Group>
+				<Form.Label htmlFor="score">{evaluation}</Form.Label>
+				<Form.Control id="score" name="score" type="number" min="0" max="5" />
+			</Form.Group>
 		);
 	}
 }
