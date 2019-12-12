@@ -126,6 +126,7 @@ export default class Questionnaire extends Component {
 					style={{
 						//marginTop: '5rem',
 						//marginLeft: '1rem',
+						margin: '1rem',
 						width: '30vw',
 						padding: '1.5rem',
 						backgroundColor: '#446990',
@@ -135,11 +136,12 @@ export default class Questionnaire extends Component {
 					<Form.Group>
 						<Form.Control
 							id="fullname"
-							name="name"
+							name="fullname"
 							type="text"
 							placeholder="FULL NAME"
 							value={this.state.fullname}
 							onChange={this.handleChange}
+							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
 						/>
 					</Form.Group>
 					<Form.Group>
@@ -150,6 +152,8 @@ export default class Questionnaire extends Component {
 							placeholder="EMAIL"
 							value={this.state.email}
 							onChange={this.handleChange}
+							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
+							className="form-control font"
 						/>
 					</Form.Group>
 					<Form.Group>
@@ -160,6 +164,7 @@ export default class Questionnaire extends Component {
 							placeholder="PROJECT REPOSITORY"
 							value={this.state.repo}
 							onChange={this.handleChange}
+							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
 						/>
 					</Form.Group>
 					<Form.Group>
@@ -170,13 +175,20 @@ export default class Questionnaire extends Component {
 							placeholder="PROJECT URL"
 							value={this.state.URL}
 							onChange={this.handleChange}
+							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
 						/>
 					</Form.Group>
 
 					{this.makeQuestions(this.state.questions)}
 
 					<button
-						style={{ backgroundColor: '#F45B69', border: '#F45B69', width: '100%', padding: '.5rem' }}
+						style={{
+							color: '#E4FDE0',
+							backgroundColor: '#F45B69',
+							border: '#F45B69',
+							width: '100%',
+							padding: '.5rem'
+						}}
 						type="submit"
 						//variant="primary"
 						//className="d-inline-block"

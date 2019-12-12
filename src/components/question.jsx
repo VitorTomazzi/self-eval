@@ -18,7 +18,7 @@ export default class Question extends Component {
 					paddingLeft: '.5rem'
 				}}>
 				<Form.Label htmlFor="score">{evaluation}</Form.Label>
-				<Form.Control id="score" name="score" type="number" min="0" max="5" style={{ width: '10%' }} />
+				<Form.Control id="score" name="score" type="number" min="0" max="5" style={{ width: '20%' }} />
 			</Form.Group>
 		);
 	}
