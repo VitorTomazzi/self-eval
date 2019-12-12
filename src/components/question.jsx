@@ -7,9 +7,18 @@ export default class Question extends Component {
 		const { id, evaluation } = this.props.question;
 
 		return (
-			<Form.Group>
+			<Form.Group
+				className="font"
+				style={{
+					//border: '1px solid black',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					color: '#E4FDE0',
+					paddingLeft: '.5rem'
+				}}>
 				<Form.Label htmlFor="score">{evaluation}</Form.Label>
-				<Form.Control id="score" name="score" type="number" min="0" max="5" />
+				<Form.Control id="score" name="score" type="number" min="0" max="5" style={{ width: '10%' }} />
 			</Form.Group>
 		);
 	}

@@ -9,17 +9,14 @@ export default class App extends Component {
 	render() {
 		return (
 			<Router>
-				<Container
-					fluid={true}
-					className="p-0"
-					style={{ backgroundColor: '#114B5F', width: '100%', height: '100vh' }}>
-					<Switch>
-						<Route exact path="/">
-							<HomePage />
-						</Route>
-					</Switch>
-				</Container>
+				<Switch>
+					<Route exact path="/">
+						<HomePage />
+					</Route>
+				</Switch>
 			</Router>
 		);
 	}
 }
+
+// width: '100%', height: '100vh'

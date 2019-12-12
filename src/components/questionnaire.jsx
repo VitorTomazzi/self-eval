@@ -112,15 +112,25 @@ export default class Questionnaire extends Component {
 	render() {
 		return (
 			<Container
-				className="d-flex flex-column"
+				fluid
 				style={{
-					paddingTop: '5rem',
-					marginBottom: '.5rem',
-					border: '.2rem solid purple'
+					border: '.2rem solid purple',
+					//height: '100vh',
+					display: 'flex',
+					justifyContent: 'space-around',
+					alignItems: 'center',
+					backgroundColor: '#114B5F'
 				}}>
 				<Form
 					onSubmit={this.handleSubmit}
-					style={{ padding: '1rem', backgroundColor: '#446990', border: '.1rem solid black' }}
+					style={{
+						//marginTop: '5rem',
+						//marginLeft: '1rem',
+						width: '30vw',
+						padding: '1.5rem',
+						backgroundColor: '#446990',
+						border: '.1rem solid black'
+					}}
 					className="font">
 					<Form.Group>
 						<Form.Control
@@ -165,14 +175,14 @@ export default class Questionnaire extends Component {
 
 					{this.makeQuestions(this.state.questions)}
 
-					<Button
-						style={{ backgroundColor: '#F45B69', border: '#F45B69' }}
+					<button
+						style={{ backgroundColor: '#F45B69', border: '#F45B69', width: '100%', padding: '.5rem' }}
 						type="submit"
-						variant="primary"
-						className="d-inline-block"
+						//variant="primary"
+						//className="d-inline-block"
 						disabled={this.state.disabled}>
-						Send
-					</Button>
+						Submit
+					</button>
 
 					{this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
 					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>}
