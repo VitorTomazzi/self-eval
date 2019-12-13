@@ -3,10 +3,7 @@ import Question from './question';
 import axios from 'axios';
 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 export default class Questionnaire extends Component {
 	constructor(props) {
@@ -118,20 +115,34 @@ export default class Questionnaire extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 
-		const { fullname, email, repo, URL } = this.state;
+		// const { fullname, email, repo, URL } = this.state;
 
-		const data = {
-			fullname,
-			email,
-			repo,
-			URL
-		};
+		// const data = {
+		// 	fullname,
+		// 	email,
+		// 	repo,
+		// 	URL
+		// };
 
-		axios.post('api/sendMail', data);
+		//disable to stop from pressing submit button 1000x
+		this.setState({
+			disabled: true
+		});
 
-		// this.setState({
-		// 	disabled: true
-		// });
+		axios
+			.post('http://localhost:5000/api/sendMail', this.state)
+			.then((res) => {
+				this.setState({
+					disabled: false,
+					emailSent: true
+				});
+			})
+			.catch((err) => {
+				this.setState({
+					disabled: false,
+					emailSent: false
+				});
+			});
 	};
 
 	render() {
@@ -139,8 +150,6 @@ export default class Questionnaire extends Component {
 			<Container
 				fluid
 				style={{
-					//border: '.2rem solid purple',
-					//height: '100vh',
 					display: 'flex',
 					justifyContent: 'space-around',
 					alignItems: 'center',
@@ -149,12 +158,9 @@ export default class Questionnaire extends Component {
 				<Form
 					onSubmit={this.handleSubmit}
 					style={{
-						//marginTop: '5rem',
-						//marginLeft: '1rem',
 						margin: '1rem',
 						padding: '1.5rem',
 						backgroundColor: '#446990'
-						//border: '.1rem solid black'
 					}}
 					className="font">
 					<div>
@@ -237,6 +243,7 @@ export default class Questionnaire extends Component {
 					</p>
 					<hr />
 
+					{/* evaluation questions */}
 					{/* {this.makeQuestions(this.state.questions)} */}
 
 					<button
@@ -253,12 +260,11 @@ export default class Questionnaire extends Component {
 						Submit
 					</button>
 
-					{/* {this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
-					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>} */}
+					{/* Success message for user */}
+					{this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
+					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>}
 				</Form>
 			</Container>
 		);
 	}
 }
-
-// onClick={(e) => this.handleCardClick(question.id, e)}

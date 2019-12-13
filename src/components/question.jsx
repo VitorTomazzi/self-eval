@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 
 export default class Question extends Component {
 	render() {
-		const { id, evaluation, score } = this.props.question;
+		const { evaluation, score } = this.props.question;
 		//const { onChange } = this.props.onChange
 
 		return (
