@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 export default class Question extends Component {
 	render() {
 		const { id, evaluation, score } = this.props.question;
-		const { onChange } = this.props.onChange;
-
+		const { onTextChange } = this.props.onTextChange;
+		//console.log(this.props.onTextChange);
 		return (
 			<div
 				className="font"
@@ -34,7 +34,7 @@ export default class Question extends Component {
 						textAlign: 'center'
 					}}
 					value={score}
-					onChange={onChange(id)}
+					onChange={(event) => this.props.onTextChange(event, id)}
 				/>
 			</div>
 		);

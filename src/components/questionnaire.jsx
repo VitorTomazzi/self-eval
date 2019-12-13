@@ -99,7 +99,25 @@ export default class Questionnaire extends Component {
 			]
 		};
 	}
+	handleChange = (event, score) => {
+		const target = event.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		let name = target.name;
 
+		//console.log(name, value, score, '<<<<<<');
+
+		if (name === 'score') {
+			let questions = [ ...this.state.questions ];
+			questions[score].score = value;
+			this.setState({
+				questions: questions
+			});
+		} else {
+			this.setState({
+				[name]: value
+			});
+		}
+	};
 	makeQuestions = (questions) => {
 		return questions.map((question) => {
 			return (
@@ -107,33 +125,14 @@ export default class Questionnaire extends Component {
 					question={question}
 					key={question.id}
 					//value={question.score}
-					onChange={this.handleChange}
+					onTextChange={this.handleChange}
 				/>
 			);
 		});
 	};
 
-	handleChange = (event) => {
-		const target = event.target;
-		const value = target.type === 'checkbox' ? target.checked : target.value;
-		const name = target.name;
-
-		this.setState({
-			[name]: value
-		});
-	};
-
 	handleSubmit = (event) => {
 		event.preventDefault();
-
-		// const { fullname, email, repo, URL } = this.state;
-
-		// const data = {
-		// 	fullname,
-		// 	email,
-		// 	repo,
-		// 	URL
-		// };
 
 		//disable to stop from pressing submit button 1000x
 		this.setState({

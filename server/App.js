@@ -29,6 +29,16 @@ app.post('/api/sendMail', (req, res) => {
 
 	const results = `${fullname}, ${email}, ${repo}, ${URL}`;
 
+	console.log(questions);
+
+	let questionsArr = '';
+	let appendQuestions = () => {
+		for (let i = 0; i < questions.length; i++) {
+			questionsArr += `<li>${questions[i].evaluation} : ${questions[i].score}</li>`;
+		}
+	};
+	appendQuestions();
+	
 	const htmlEmail = `
 		<h3>Self evaluation results</h3>
 		<ul>
@@ -36,7 +46,7 @@ app.post('/api/sendMail', (req, res) => {
 			<li>${email}</li>
 			<li>${repo}</li>
 			<li>${URL}</li>
-			<li>${questions}</li>
+			${questionsArr}
 		</ul>
 	`;
 
