@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
 
 export default class Question extends Component {
 	render() {
-		const { evaluation, score } = this.props.question;
-		//const { onChange } = this.props.onChange
+		const { id, evaluation, score } = this.props.question;
+		const { onChange } = this.props.onChange;
 
 		return (
-			<Form.Group
+			<div
 				className="font"
 				style={{
 					//border: '1px solid black',
@@ -18,18 +17,26 @@ export default class Question extends Component {
 					paddingLeft: '.5rem',
 					letterSpacing: '.1rem'
 				}}>
-				<Form.Label htmlFor="score">{evaluation}:</Form.Label>
-				<Form.Control
+				<label htmlFor="score">{evaluation}:</label>
+				<input
 					id="score"
 					name="score"
 					type="text"
 					//placeholder="1"
 					min="1"
 					max="5"
-					style={{ width: '20%' }}
+					style={{
+						width: '15%',
+						backgroundColor: '#E4FDE0',
+						color: '#114B5F',
+						borderStyle: 'none',
+						marginBottom: '1rem',
+						textAlign: 'center'
+					}}
 					value={score}
+					onChange={onChange(id)}
 				/>
-			</Form.Group>
+			</div>
 		);
 	}
 }

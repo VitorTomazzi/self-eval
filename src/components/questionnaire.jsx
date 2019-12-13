@@ -8,6 +8,10 @@ import Form from 'react-bootstrap/Form';
 export default class Questionnaire extends Component {
 	constructor(props) {
 		super(props);
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+
 		this.state = {
 			fullname: '',
 			email: '',
@@ -98,7 +102,14 @@ export default class Questionnaire extends Component {
 
 	makeQuestions = (questions) => {
 		return questions.map((question) => {
-			return <Question question={question} key={question.id} onChange={this.handleChange} />;
+			return (
+				<Question
+					question={question}
+					key={question.id}
+					//value={question.score}
+					onChange={this.handleChange}
+				/>
+			);
 		});
 	};
 
@@ -244,7 +255,7 @@ export default class Questionnaire extends Component {
 					<hr />
 
 					{/* evaluation questions */}
-					{/* {this.makeQuestions(this.state.questions)} */}
+					{this.makeQuestions(this.state.questions)}
 
 					<button
 						style={{

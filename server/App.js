@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 app.post('/api/sendMail', (req, res) => {
 	console.log(req.body);
 
-	let { fullname, email, repo, URL } = req.body;
+	let { fullname, email, repo, URL, questions } = req.body;
 
 	const results = `${fullname}, ${email}, ${repo}, ${URL}`;
 
@@ -36,6 +36,7 @@ app.post('/api/sendMail', (req, res) => {
 			<li>${email}</li>
 			<li>${repo}</li>
 			<li>${URL}</li>
+			<li>${questions}</li>
 		</ul>
 	`;
 
