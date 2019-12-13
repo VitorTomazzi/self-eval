@@ -18,7 +18,36 @@ font-family: museo sans
 font-weight: 500 */
 
 .font {
-	color: #114b5f;
+	color: #e4fde0;
 	font-family: 'Museo sans';
 	font-weight: 500;
+}
+
+::-webkit-input-placeholder {
+	color: #114b5f;
+	font-size: .6rem;
+	font-family: 'Museo sans';
+	font-weight: 500;
+	letter-spacing: .3rem;
+}
+::-moz-placeholder {
+	color: #114b5f;
+	font-size: .6rem;
+	font-family: 'Museo sans';
+	font-weight: 500;
+	letter-spacing: .3rem;
+}
+:-ms-input-placeholder {
+	color: #114b5f;
+	font-size: .6rem;
+	font-family: 'Museo sans';
+	font-weight: 500;
+	letter-spacing: .3rem;
+}
+::placeholder {
+	color: #114b5f;
+	font-size: .6rem;
+	font-family: 'Museo sans';
+	font-weight: 500;
+	letter-spacing: .3rem;
 }

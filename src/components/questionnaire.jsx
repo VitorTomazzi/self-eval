@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Question from './question';
+import axios from 'axios';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -17,67 +18,82 @@ export default class Questionnaire extends Component {
 			URL: '',
 			displayed: false,
 			emailSent: null,
-			score: '',
+			//score: '',
 			questions: [
 				{
 					id: 0,
-					evaluation: 'Using best practices OOP'
+					evaluation: 'Using best practices OOP',
+					score: ''
 				},
 				{
 					id: 1,
-					evaluation: 'Modular Development'
+					evaluation: 'Modular Development',
+					score: ''
 				},
 				{
 					id: 2,
-					evaluation: 'Full-stack workflow understanding'
+					evaluation: 'Full-stack workflow understanding',
+					score: ''
 				},
 				{
 					id: 3,
-					evaluation: 'Testing'
+					evaluation: 'Testing',
+					score: ''
 				},
 				{
 					id: 4,
-					evaluation: 'Database knowledge'
+					evaluation: 'Database knowledge',
+					score: ''
 				},
 				{
 					id: 5,
-					evaluation: 'Debugging'
+					evaluation: 'Debugging',
+					score: ''
 				},
 				{
 					id: 6,
-					evaluation: 'Problem solving skills'
+					evaluation: 'Problem solving skills',
+					score: ''
 				},
 				{
 					id: 7,
-					evaluation: 'Javascript'
+					evaluation: 'Javascript',
+					score: ''
 				},
 				{
 					id: 8,
-					evaluation: 'HTML'
+					evaluation: 'HTML',
+					score: ''
 				},
 				{
 					id: 9,
-					evaluation: 'CSS'
+					evaluation: 'CSS',
+					score: ''
 				},
 				{
 					id: 10,
-					evaluation: 'Working on a team'
+					evaluation: 'Working on a team',
+					score: ''
 				},
 				{
 					id: 11,
-					evaluation: 'Self motivation'
+					evaluation: 'Self motivation',
+					score: ''
 				},
 				{
 					id: 12,
-					evaluation: 'Communication skills'
+					evaluation: 'Communication skills',
+					score: ''
 				},
 				{
 					id: 13,
-					evaluation: 'Your own energy level'
+					evaluation: 'Your own energy level',
+					score: ''
 				},
 				{
 					id: 14,
-					evaluation: 'Intelligence/Aptitude'
+					evaluation: 'Intelligence Aptitude',
+					score: ''
 				}
 			]
 		};
@@ -85,9 +101,7 @@ export default class Questionnaire extends Component {
 
 	makeQuestions = (questions) => {
 		return questions.map((question) => {
-			return (
-				<Question question={question} key={question.id} value={this.state.score} onChange={this.handleChange} />
-			);
+			return <Question question={question} key={question.id} onChange={this.handleChange} />;
 		});
 	};
 
@@ -104,9 +118,20 @@ export default class Questionnaire extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 
-		this.setState({
-			disabled: true
-		});
+		const { fullname, email, repo, URL } = this.state;
+
+		const data = {
+			fullname,
+			email,
+			repo,
+			URL
+		};
+
+		axios.post('api/sendMail', data);
+
+		// this.setState({
+		// 	disabled: true
+		// });
 	};
 
 	render() {
@@ -114,7 +139,7 @@ export default class Questionnaire extends Component {
 			<Container
 				fluid
 				style={{
-					border: '.2rem solid purple',
+					//border: '.2rem solid purple',
 					//height: '100vh',
 					display: 'flex',
 					justifyContent: 'space-around',
@@ -127,59 +152,92 @@ export default class Questionnaire extends Component {
 						//marginTop: '5rem',
 						//marginLeft: '1rem',
 						margin: '1rem',
-						width: '30vw',
 						padding: '1.5rem',
-						backgroundColor: '#446990',
-						border: '.1rem solid black'
+						backgroundColor: '#446990'
+						//border: '.1rem solid black'
 					}}
 					className="font">
-					<Form.Group>
-						<Form.Control
+					<div>
+						<input
 							id="fullname"
 							name="fullname"
 							type="text"
 							placeholder="FULL NAME"
 							value={this.state.fullname}
 							onChange={this.handleChange}
-							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
+							style={{
+								backgroundColor: '#E4FDE0',
+								color: '#114B5F',
+								borderStyle: 'none',
+								marginBottom: '1rem',
+								width: '100%',
+								padding: '.5rem 1rem'
+							}}
+							className="font"
 						/>
-					</Form.Group>
-					<Form.Group>
-						<Form.Control
+					</div>
+					<div>
+						<input
 							id="email"
 							name="email"
 							type="email"
 							placeholder="EMAIL"
 							value={this.state.email}
 							onChange={this.handleChange}
-							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
-							className="form-control font"
+							style={{
+								backgroundColor: '#E4FDE0',
+								color: '#114B5F',
+								borderStyle: 'none',
+								marginBottom: '1rem',
+								width: '100%',
+								padding: '.5rem 1rem'
+							}}
+							className="font"
 						/>
-					</Form.Group>
-					<Form.Group>
-						<Form.Control
+					</div>
+					<div>
+						<input
 							id="repo"
 							name="repo"
 							type="text"
-							placeholder="PROJECT REPOSITORY"
+							placeholder="PROJECT REPO"
 							value={this.state.repo}
 							onChange={this.handleChange}
-							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
+							style={{
+								backgroundColor: '#E4FDE0',
+								color: '#114B5F',
+								borderStyle: 'none',
+								marginBottom: '1rem',
+								width: '100%',
+								padding: '.5rem 1rem'
+							}}
 						/>
-					</Form.Group>
-					<Form.Group>
-						<Form.Control
+					</div>
+					<div>
+						<input
 							id="URL"
 							name="URL"
 							type="text"
 							placeholder="PROJECT URL"
 							value={this.state.URL}
 							onChange={this.handleChange}
-							style={{ backgroundColor: '#E4FDE0', color: '#114B5F' }}
+							style={{
+								backgroundColor: '#E4FDE0',
+								color: '#114B5F',
+								borderStyle: 'none',
+								marginBottom: '1rem',
+								width: '100%',
+								padding: '.5rem 1rem'
+							}}
 						/>
-					</Form.Group>
+					</div>
 
-					{this.makeQuestions(this.state.questions)}
+					<p className="font" style={{ padding: '1rem' }}>
+						Each category scores from 1 to 5. Total of 50 pts can be used
+					</p>
+					<hr />
+
+					{/* {this.makeQuestions(this.state.questions)} */}
 
 					<button
 						style={{
@@ -187,17 +245,16 @@ export default class Questionnaire extends Component {
 							backgroundColor: '#F45B69',
 							border: '#F45B69',
 							width: '100%',
-							padding: '.5rem'
+							padding: '.5rem',
+							letterSpacing: '.2rem'
 						}}
 						type="submit"
-						//variant="primary"
-						//className="d-inline-block"
 						disabled={this.state.disabled}>
 						Submit
 					</button>
 
-					{this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
-					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>}
+					{/* {this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
+					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>} */}
 				</Form>
 			</Container>
 		);

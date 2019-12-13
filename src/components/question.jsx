@@ -4,7 +4,8 @@ import Col from 'react-bootstrap/Col';
 
 export default class Question extends Component {
 	render() {
-		const { id, evaluation } = this.props.question;
+		const { id, evaluation, score } = this.props.question;
+		//const { onChange } = this.props.onChange
 
 		return (
 			<Form.Group
@@ -15,10 +16,20 @@ export default class Question extends Component {
 					justifyContent: 'space-between',
 					alignItems: 'center',
 					color: '#E4FDE0',
-					paddingLeft: '.5rem'
+					paddingLeft: '.5rem',
+					letterSpacing: '.1rem'
 				}}>
-				<Form.Label htmlFor="score">{evaluation}</Form.Label>
-				<Form.Control id="score" name="score" type="number" min="0" max="5" style={{ width: '20%' }} />
+				<Form.Label htmlFor="score">{evaluation}:</Form.Label>
+				<Form.Control
+					id="score"
+					name="score"
+					type="text"
+					//placeholder="1"
+					min="1"
+					max="5"
+					style={{ width: '20%' }}
+					value={score}
+				/>
 			</Form.Group>
 		);
 	}
