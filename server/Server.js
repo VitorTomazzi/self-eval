@@ -32,7 +32,8 @@ app.use((req, res, next) => {
 // 	client.close();
 // });
 
-const uri = process.env.ATLAS_URI;
+//const uri = process.env.ATLAS_URI; uri for Atlas MongoDB
+const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -82,7 +83,7 @@ app.post('/api/sendMail', (req, res) => {
 		.sendMail({
 			from: 'testvitor11@gmail.com',
 			to: 'vitor.c.tomazzi@gmail.com',
-			subject: 'test',
+			subject: 'React Self Eval - We should be all set',
 			text: results,
 			html: htmlEmail
 		})
