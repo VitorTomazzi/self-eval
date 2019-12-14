@@ -140,10 +140,10 @@ export default class Questionnaire extends Component {
 			disabled: true
 		});
 
-		axios.post('http://localhost:5000/user/submit', this.state).then((res) => console.log(res.data));
+		axios.post('/user/submit', this.state).then((res) => console.log(res.data));
 
 		axios
-			.post('http://localhost:5000/api/sendMail', this.state)
+			.post('/api/sendMail', this.state)
 			.then((res) => {
 				this.setState({
 					disabled: false,
