@@ -6,23 +6,21 @@ router.get('/', (req, res, next) => {
 	User.find().then((users) => res.json(users)).catch((err) => res.status(400).json('Error:' + err));
 });
 
-router.post('/submit', async (req, res, next) => {
-	try {
-		const fullname = req.body.fullname;
-		const email = req.body.newEmail;
-		const repo = req.body.repo;
-		const URL = req.body.URL;
+router.route('/submit').post((req, res, next) => {
+	const fullname = req.body.fullname;
+	const email = req.body.email;
+	const repo = req.body.repo;
+	const URL = req.body.URL;
+	const questions = req.body.questions;
 
-		const result = await User.create({
-			fullname,
-			email,
-			repo,
-			URL
-		});
-		res.json({ message: 'success', user: result });
-	} catch (err) {
-		next(err);
-	}
+	const newUser = new User({
+		fullname,
+		email,
+		repo,
+		URL,
+		questions
+	});
+	newUser.save().then(() => res.json('User submission added!')).catch((err) => res.status(400).json('Error' + err));
 });
 
 module.exports = router;

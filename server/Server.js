@@ -22,14 +22,32 @@ app.use((req, res, next) => {
 	next();
 });
 
-const MongoClient = require('mongodb').MongoClient;
+// mongo atlas instructions - ignore
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = process.env.ATLAS_URI;
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect((err) => {
+// 	const collection = client.db('test').collection('devices');
+// 	// perform actions on the collection object
+// 	client.close();
+// });
+
 const uri = process.env.ATLAS_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect((err) => {
-	const collection = client.db('test').collection('devices');
-	// perform actions on the collection object
-	client.close();
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+	console.log(`Connected to Mongo!`);
 });
+
+// mongoose.Promise = Promise;
+// mongoose
+// 	.connect(process.env.ATLAS_URI, { useNewUrlParser: true })
+// 	.then((x) => {
+// 		console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+// 	})
+// 	.catch((err) => {
+// 		console.error('Error connecting to mongo', err);
+// 	});
 
 app.get('/', (req, res) => {
 	res.send('hello');
@@ -82,9 +100,9 @@ app.post('/api/sendMail', (req, res) => {
 		.catch((error) => console.log(error));
 });
 
-const userRouter = require('./routes/user')
+const userRouter = require('./routes/user');
 
-app.use('/user', userRouter)
+app.use('/user', userRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on ${PORT}`);
