@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -13,6 +14,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false })); comes with express now
 app.use(cookieParser());
+
+app.use(express.static(path.join(__dirname, '/build')));
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -28,26 +34,10 @@ app.use(cors());
 // });
 
 app.use((req, res, next) => {
-	res.header(
-	  "Access-Control-Allow-Origin",
-	  "https://self-eval.herokuapp.com/"
-	);
-	res.header(
-	  "Access-Control-Allow-Headers",
-	  "Origin, X-Requested-With, Content-Type, Accept"
-	);
+	res.header('Access-Control-Allow-Origin', 'https://self-eval.herokuapp.com/');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
-  });
-
-// mongo atlas instructions - ignore
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = process.env.ATLAS_URI;
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// client.connect((err) => {
-// 	const collection = client.db('test').collection('devices');
-// 	// perform actions on the collection object
-// 	client.close();
-// });
+});
 
 //const uri = process.env.ATLAS_URI; uri for AtlasMongoDB
 const uri = process.env.MONGODB_URI;
