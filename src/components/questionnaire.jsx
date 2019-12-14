@@ -140,6 +140,8 @@ export default class Questionnaire extends Component {
 			disabled: true
 		});
 
+		axios.post('http://localhost:5000/user/submit', this.state).then((res) => console.log(res.data));
+
 		axios
 			.post('http://localhost:5000/api/sendMail', this.state)
 			.then((res) => {
@@ -272,8 +274,8 @@ export default class Questionnaire extends Component {
 					</button>
 
 					{/* Success message for user */}
-					{this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
-					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>}
+					{/* {this.state.emailSent === true && <p className="d-inline success-msg">Email sent!</p>}
+					{this.state.emailSent === false && <p className="d-inline error-msg">Hmm, try again</p>} */}
 				</Form>
 			</Container>
 		);

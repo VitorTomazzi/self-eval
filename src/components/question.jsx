@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Question extends Component {
 	render() {
 		const { id, evaluation, score } = this.props.question;
-		const { onTextChange } = this.props.onTextChange;
+		//const { onTextChange } = this.props.onTextChange;
 		//console.log(this.props.onTextChange);
 		return (
 			<div

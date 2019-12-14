@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false })); comes with express now
 app.use(cookieParser());
 
 app.use(cors());
@@ -39,28 +39,18 @@ connection.once('open', () => {
 	console.log(`Connected to Mongo!`);
 });
 
-// mongoose.Promise = Promise;
-// mongoose
-// 	.connect(process.env.ATLAS_URI, { useNewUrlParser: true })
-// 	.then((x) => {
-// 		console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
-// 	})
-// 	.catch((err) => {
-// 		console.error('Error connecting to mongo', err);
-// 	});
-
 app.get('/', (req, res) => {
 	res.send('hello');
 });
 
 app.post('/api/sendMail', (req, res) => {
-	console.log(req.body);
+	//console.log(req.body);
 
 	let { fullname, email, repo, URL, questions } = req.body;
 
 	const results = `${fullname}, ${email}, ${repo}, ${URL}`;
 
-	console.log(questions);
+	//console.log(questions);
 
 	let questionsArr = '';
 	let appendQuestions = () => {
@@ -91,7 +81,7 @@ app.post('/api/sendMail', (req, res) => {
 	transporter
 		.sendMail({
 			from: 'testvitor11@gmail.com',
-			to: 'testvitor11@gmail.com',
+			to: 'vitor.c.tomazzi@gmail.com',
 			subject: 'test',
 			text: results,
 			html: htmlEmail
