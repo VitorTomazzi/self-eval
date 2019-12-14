@@ -89,7 +89,7 @@ app.post('/api/sendMail', (req, res) => {
 	transporter
 		.sendMail({
 			from: 'testvitor11@gmail.com',
-			to: 'vitor.c.tomazzi@gmail.com',
+			to: 'testvitor11@gmail.com',
 			subject: 'React Self Eval - We should be all set',
 			text: results,
 			html: htmlEmail

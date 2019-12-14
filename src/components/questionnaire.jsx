@@ -133,7 +133,8 @@ export default class Questionnaire extends Component {
 	};
 
 	handleSubmit = (event) => {
-		event.preventDefault();
+		//depends if you want form to reset on submission
+		//event.preventDefault();
 
 		//disable to stop from pressing submit button 1000x
 		this.setState({
