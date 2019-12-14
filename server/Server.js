@@ -22,7 +22,7 @@ app.get('*', (req, res) => {
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('self-eval-react/build'));
+	app.use(express.static('/build'));
 }
 
 app.use(cors());
