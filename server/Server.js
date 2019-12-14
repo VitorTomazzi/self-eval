@@ -30,7 +30,7 @@ app.use(cors());
 app.use((req, res, next) => {
 	res.header(
 	  "Access-Control-Allow-Origin",
-	  "http://<YOUR-APP-NAME>.herokuapp.com"
+	  "https://self-eval.herokuapp.com/"
 	);
 	res.header(
 	  "Access-Control-Allow-Headers",
