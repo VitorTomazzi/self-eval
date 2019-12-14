@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 // 	client.close();
 // });
 
-//const uri = process.env.ATLAS_URI; uri for Atlas MongoDB
+//const uri = process.env.ATLAS_URI; uri for AtlasMongoDB
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const connection = mongoose.connection;
