@@ -19,7 +19,6 @@ export default class Questionnaire extends Component {
 			URL: '',
 			displayed: false,
 			emailSent: null,
-			//score: '',
 			questions: [
 				{
 					id: 0,
@@ -99,6 +98,7 @@ export default class Questionnaire extends Component {
 			]
 		};
 	}
+
 	handleChange = (event, score) => {
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -118,6 +118,7 @@ export default class Questionnaire extends Component {
 			});
 		}
 	};
+
 	makeQuestions = (questions) => {
 		return questions.map((question) => {
 			return (
